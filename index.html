@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>HR Chatbot Test</title>
+</head>
+<body>
+
+<h2>HR Chatbot – Test</h2>
+
+<div id="messages"></div>
+
+<input id="input" placeholder="Nhập câu hỏi..." />
+<button onclick="send()">Gửi</button>
+
+<script>
+  const messages = document.getElementById('messages');
+  const input = document.getElementById('input');
+
+  const userId = 'test-' + Math.random().toString(36).slice(2);
+
+  function addMsg(text) {
+    const p = document.createElement('p');
+    p.innerText = text;
+    messages.appendChild(p);
+  }
+
+  async function send() {
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMsg('Bạn: ' + text);
+    input.value = '';
+
+    const res = await fetch('https://n8n.phs.vn/webhook/hrchat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: userId,
+        message: text
+      })
+    });
+
+    const data = await res.json();
+    addMsg('Bot: ' + (data.reply || 'Không có phản hồi'));
+  }
+</script>
+
+</body>
+</html>
