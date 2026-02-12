@@ -145,25 +145,33 @@
       messages.appendChild(loading);
       messages.scrollTop = messages.scrollHeight;
 
-      try {
-        const res = await fetch("https://n8n.phs.vn/webhook/hrchat", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            message: text
-          })
-        });
+try {
+  const res = await fetch("https://n8n.phs.vn/webhook/hrchat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: text
+    })
+  });
 
-        const data = await res.json();
-        loading.remove();
-        addMessage(data.reply || "⚠️ Không có phản hồi từ hệ thống.", "bot");
+  const data = await res.json();
+  loading.remove();
 
-      } catch (err) {
-        loading.remove();
-        addMessage("❌ Lỗi kết nối tới hệ thống. Vui lòng thử lại.", "bot");
-      }
+  const botReply =
+    data.reply ||
+    data.output ||
+    data.message ||
+    "⚠️ Không có phản hồi từ hệ thống.";
+
+  addMessage(botReply, "bot");
+
+} catch (err) {
+  loading.remove();
+  addMessage("❌ Lỗi kết nối tới hệ thống. Vui lòng thử lại.", "bot");
+}
+
     }
 
     // Gửi bằng Enter
@@ -175,4 +183,5 @@
   </script>
 </body>
 </html>
+
 
