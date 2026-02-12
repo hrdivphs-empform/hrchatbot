@@ -124,20 +124,32 @@
 
     /* Responsive cho màn hình nhỏ */
     @media (max-width: 768px) {
-      .chat-container {
-        width: 95%;
-        height: 90vh;
-      }
 
-      .company-logo {
-        top: 15px;
-        left: 20px;
-      }
+  body {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
 
-      .company-logo img {
-        height: 60px;
-      }
-    }
+  /* Logo mobile */
+  .company-logo {
+    position: static;      /* bỏ absolute */
+    margin-bottom: 10px;
+  }
+
+  .company-logo img {
+    height: 60px;
+  }
+
+  /* Chat mobile */
+  .chat-container {
+    width: 95%;
+    height: 85vh;
+  }
+
+}
+
   </style>
 </head>
 
@@ -242,5 +254,6 @@
 
 </body>
 </html>
+
 
 
