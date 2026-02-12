@@ -42,13 +42,26 @@
     }
 
     .chat-header {
-      background: #1e7f5c;
-      color: #fff;
-      padding: 18px;
-      font-weight: bold;
-      font-size: 18px;
-      text-align: center;
-    }
+  background: #1e7f5c;
+  color: #fff;
+  padding: 22px 20px 26px 20px; /* tăng chiều cao */
+  text-align: center;
+}
+
+/* Dòng tiêu đề chính */
+.chat-header .title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+/* 2 dòng mô tả */
+.chat-header .subtitle {
+  font-style: italic;
+  font-size: 15px; /* bằng cỡ chữ tin nhắn bot */
+  line-height: 1.5;
+}
+
 
     .chat-messages {
       flex: 1;
@@ -138,8 +151,15 @@
   <div class="chat-container">
 
     <div class="chat-header">
-      PHS Buddy Nhân sự
-    </div>
+  <div class="title">
+    PHS Buddy Nhân sự
+  </div>
+  <div class="subtitle">
+    Trợ lý Khối Nhân sự và Trải nghiệm nơi làm việc.<br>
+    Đồng hành cùng bạn trên hành trình làm việc tại PHS.
+  </div>
+</div>
+
 
     <div class="chat-messages" id="messages">
       <div class="message bot">
@@ -222,3 +242,4 @@
 
 </body>
 </html>
+
